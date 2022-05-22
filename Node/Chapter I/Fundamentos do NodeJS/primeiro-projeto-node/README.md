@@ -33,3 +33,31 @@
 
 Como definimos que uma função vai ser um Middleware?  
 » Precisa receber 3 params: `request, response, next`. O `next` é que irá definir se o Middleware prossegue com a operação ou se vai parar.
+
+```js
+
+// Criação de um Middleware
+function verifyIfExistsAccountCPF(request, response, next) {
+    const { cpf } = request.params
+
+    const customer = customers.find(customer => customer.cpf === cpf);
+
+    if (!customer) {
+        return response.status(400).json({ error: "Customer not found!" })
+    }
+
+    return next(); // Manda prosseguir, pois existe um customer (o Middleware não encontrou nenhum problemas nas verificações)
+}
+
+// Para usar o Middleware, temos 2 formas:
+
+// Forma 1
+app.use(verifyIfExistsAccountCPF); // neste caso, todas as rotas que se encontra abaixo irão utilizar esse Middleware
+
+// Forma 2 :: devemos chamá-los entre a rota e o (req, res)
+app.get('/statement/:cpf', verifyIfExistsAccountCPF, (request, response) => {
+    const { customer } = request;
+    
+    return response.json(customer.statement)
+})
+```
