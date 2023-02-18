@@ -1,0 +1,24 @@
+.wrapper {
+    max-width: 70rem; /* tamanho do aside + main + espaçamento entre eles = 1120. 1120px / 16 = 70rem */   
+    margin: 2rem auto;
+    padding: 0 1rem; /* terá um espaçamento de 16px quando a largura for menor que 70rem (1120px) */
+
+    display: grid;
+    grid-template-columns: 256px 1fr; /* 1fr » dizer que algo vai ter um tamanho flexível */
+    gap: 2rem;
+    align-items: flex-start;
+}
+
+aside {
+    background: red;
+
+    
+}
+
+main {
+    /* background: green; */
+}
+
+a {
+    color: var(--green-500);
+}
