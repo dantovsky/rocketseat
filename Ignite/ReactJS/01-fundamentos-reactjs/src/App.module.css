@@ -7,12 +7,11 @@
     grid-template-columns: 256px 1fr; /* 1fr » dizer que algo vai ter um tamanho flexível */
     gap: 2rem;
     align-items: flex-start;
+    transition: all .5s ease;
 }
 
 aside {
     background: red;
-
-    
 }
 
 main {
@@ -21,4 +20,16 @@ main {
 
 a {
     color: var(--green-500);
+}
+
+/* O `rem` é uma unidade relativa ao tamanho da fonte da página.
+» Tudo na página se redimensiona com base no font-size da página HTML. */
+@media (max-width: 768px) {
+    html {
+        font-size: 87.5%;
+    }
+
+    .wrapper {
+        grid-template-columns: 1fr;
+    }
 }
